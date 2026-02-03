@@ -160,7 +160,14 @@ function Dashboard() {
                                 </a>
                             )}
                             {item.type === 'IMAGE' && item.fileUrl && (
-                                <img src={item.fileUrl} alt={item.title} className="w-full h-48 object-cover rounded" />
+                                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                                    <img src={item.fileUrl} alt={item.title} className="w-full h-48 object-cover rounded hover:opacity-90 transition-opacity cursor-pointer" />
+                                </a>
+                            )}
+                            {item.type === 'DOCUMENT' && item.fileUrl && (
+                                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer" className="inline-block bg-gray-200 dark:bg-gray-700 font-bold py-2 px-4 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                                    Open Document
+                                </a>
                             )}
                         </div>
                     ))
