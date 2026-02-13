@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import { toast } from 'react-toastify';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaArrowLeft } from 'react-icons/fa';
 
 function Login() {
     const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ function Login() {
         }
 
         if (isSuccess || user) {
-            navigate('/');
+            navigate('/dashboard');
         }
 
         reset();
@@ -52,7 +52,10 @@ function Login() {
     }
 
     return (
-        <div className="flex justify-center items-center h-screen bg-light dark:bg-dark">
+        <div className="flex justify-center items-center h-screen bg-light dark:bg-dark relative">
+            <Link to="/" className="absolute top-8 left-8 flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors">
+                <FaArrowLeft /> Back to Home
+            </Link>
             <div className="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
                 <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">Login</h2>
                 <form onSubmit={onSubmit}>
