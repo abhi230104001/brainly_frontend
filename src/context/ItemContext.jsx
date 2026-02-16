@@ -34,29 +34,32 @@ export const ItemProvider = ({ children }) => {
     };
 
     const createItem = async (itemData) => {
-        setIsLoading(true);
+        // setIsLoading(true); // Removed to prevent full page spinner
         try {
             const token = user.token;
             const newItem = await itemService.createItem(itemData, token);
-            setItems([newItem, ...items]);
+            setItems((prevItems) => [newItem, ...prevItems]);
         } catch (error) {
             setIsError(true);
             setMessage(error.response?.data?.message || error.message);
         }
-        setIsLoading(false);
+        // setIsLoading(false); // Removed
     };
 
     const deleteItem = async (id) => {
-        setIsLoading(true);
+        // Optimistic update: Remove item from UI immediately
+        const previousItems = [...items];
+        setItems((prevItems) => prevItems.filter((item) => item._id !== id));
+
         try {
             const token = user.token;
             await itemService.deleteItem(id, token);
-            setItems(items.filter((item) => item._id !== id));
         } catch (error) {
+            // Revert on error
+            setItems(previousItems);
             setIsError(true);
             setMessage(error.response?.data?.message || error.message);
         }
-        setIsLoading(false);
     };
 
     return (

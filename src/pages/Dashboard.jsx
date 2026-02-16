@@ -32,6 +32,7 @@ function Dashboard() {
     const [activeTab, setActiveTab] = useState('dashboard');
     const [searchQuery, setSearchQuery] = useState('');
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
     // Quick Note State
@@ -194,9 +195,7 @@ function Dashboard() {
                     <SidebarItem id="documents" icon={FaFileAlt} label="Documents" />
                     <SidebarItem id="images" icon={FaImage} label="Images" />
 
-                    <div className="pt-6 pb-2">
-                        <p className="px-4 text-xs font-bold text-[#A3AED0] uppercase tracking-wider">Explore</p>
-                    </div>
+
                 </div>
             </aside>
 
@@ -204,29 +203,45 @@ function Dashboard() {
             <div className="flex-1 flex flex-col min-h-0 relative">
                 {/* Header */}
                 <header className="h-20 bg-white px-8 flex items-center justify-between shrink-0 transition-colors duration-300">
-                    <div className="relative w-96">
-                        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#2B3674] z-10" />
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full bg-white rounded-full py-3 pl-10 pr-4 text-[#2B3674] outline-none border border-gray-200 focus:ring-2 focus:ring-[#4318FF] transition-all font-medium text-sm placeholder:text-[#A3AED0]"
-                        />
-                    </div>
+                    <div></div>
 
                     <div className="flex items-center gap-6">
-                        <div
-                            className="flex items-center gap-3 pl-6 cursor-pointer bg-white p-2 pr-4 rounded-full"
-                            onClick={() => navigate('/profile')}
-                        >
-                            <div className="w-10 h-10 rounded-full bg-white text-[#4318FF] flex items-center justify-center font-bold text-lg overflow-hidden border-2 border-gray-100">
-                                {user?.avatar ? <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" /> : user?.name?.charAt(0)}
+                        <div className="relative">
+                            <div
+                                className="flex items-center gap-3 pl-6 cursor-pointer bg-white p-2 pr-4 rounded-full hover:bg-gray-50 transition-colors"
+                                onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
+                            >
+                                <div className="w-10 h-10 rounded-full bg-white text-[#4318FF] flex items-center justify-center font-bold text-lg overflow-hidden border-2 border-gray-100">
+                                    {user?.avatar ? <img src={user.avatar} alt={user.name} className="w-full h-full object-cover" /> : user?.name?.charAt(0)}
+                                </div>
+                                <div className="text-left hidden sm:block">
+                                    <p className="text-sm font-bold text-[#2B3674] leading-tight">{user?.name}</p>
+                                    <p className="text-xs text-[#A3AED0] font-medium">View Profile</p>
+                                </div>
                             </div>
-                            <div className="text-left hidden sm:block">
-                                <p className="text-sm font-bold text-[#2B3674] leading-tight">{user?.name}</p>
-                                <p className="text-xs text-[#A3AED0] font-medium">View Profile</p>
-                            </div>
+
+                            {isProfileDropdownOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="px-4 py-3 border-b border-gray-50">
+                                        <p className="text-sm font-bold text-[#2B3674]">{user?.name}</p>
+                                        <p className="text-xs text-[#A3AED0] truncate">{user?.email}</p>
+                                    </div>
+                                    <div className="p-2">
+                                        <button
+                                            onClick={() => navigate('/profile')}
+                                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-[#2B3674] hover:bg-blue-50 hover:text-[#4318FF] rounded-xl transition-colors flex items-center gap-2"
+                                        >
+                                            <FaCog size={14} /> My Profile
+                                        </button>
+                                        <button
+                                            onClick={logout}
+                                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50 rounded-xl transition-colors flex items-center gap-2"
+                                        >
+                                            Logout
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </header >
@@ -492,7 +507,7 @@ function Dashboard() {
                                             placeholder="Enter title..."
                                             value={formData.title}
                                             onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                                            className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all font-medium placeholder:text-[#A3AED0]"
+                                            className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all font-medium placeholder:text-[#A3AED0] text-black"
                                         />
                                     </div>
 
@@ -503,7 +518,7 @@ function Dashboard() {
                                             rows="3"
                                             value={formData.description}
                                             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                                            className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all resize-none font-medium placeholder:text-[#A3AED0]"
+                                            className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all resize-none font-medium placeholder:text-[#A3AED0] text-black"
                                         ></textarea>
                                     </div>
 
@@ -525,9 +540,15 @@ function Dashboard() {
                                             <label className="block text-sm font-bold text-[#2B3674] mb-2">File</label>
                                             <input
                                                 type="file"
+                                                accept={formData.type === 'IMAGE' ? "image/*" : ".pdf,image/*,.doc,.docx"}
                                                 onChange={(e) => setFile(e.target.files[0])}
-                                                className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-gray-50 file:text-[#4318FF] hover:file:bg-[#E9EDF7]"
+                                                className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-gray-50 file:text-[#4318FF] hover:file:bg-[#E9EDF7] text-sm text-gray-500"
                                             />
+                                            {file && (
+                                                <p className="mt-2 text-xs font-bold text-[#4318FF] bg-blue-50 px-3 py-1.5 rounded-lg inline-block">
+                                                    Selected: {file.name}
+                                                </p>
+                                            )}
                                         </div>
                                     )}
 
