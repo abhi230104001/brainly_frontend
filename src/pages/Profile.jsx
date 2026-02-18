@@ -7,7 +7,6 @@ import {
     FaBookmark,
     FaFileAlt,
     FaImage,
-    FaSearch,
     FaCog,
     FaLink,
     FaCamera,
@@ -70,16 +69,8 @@ function Profile() {
             {/* Main Content */}
             <div className="flex-1 flex flex-col min-h-0 relative">
                 {/* Header */}
-                <header className="h-20 bg-white px-8 flex items-center justify-between shrink-0 border-b border-gray-50">
-                    <div className="relative w-96 opacity-50 pointer-events-none">
-                        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-[#2B3674] z-10" />
-                        <input
-                            type="text"
-                            placeholder="Search..."
-                            readOnly
-                            className="w-full bg-white rounded-full py-3 pl-10 pr-4 text-[#2B3674] outline-none border border-gray-200 font-medium text-sm placeholder:text-[#A3AED0]"
-                        />
-                    </div>
+                <header className="h-20 bg-white px-8 flex items-center justify-end shrink-0 border-b border-gray-50">
+
 
                     <div className="flex items-center gap-6">
                         <div className="relative">
