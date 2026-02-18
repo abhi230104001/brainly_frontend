@@ -6,7 +6,7 @@ const createItem = async (itemData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
-            // Check if it is FormData for file upload
+            
             'Content-Type': itemData instanceof FormData ? 'multipart/form-data' : 'application/json',
         },
     };

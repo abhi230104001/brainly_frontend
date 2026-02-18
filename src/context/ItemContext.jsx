@@ -34,7 +34,7 @@ export const ItemProvider = ({ children }) => {
     };
 
     const createItem = async (itemData) => {
-        // setIsLoading(true); // Removed to prevent full page spinner
+        
         try {
             const token = user.token;
             const newItem = await itemService.createItem(itemData, token);
@@ -43,11 +43,11 @@ export const ItemProvider = ({ children }) => {
             setIsError(true);
             setMessage(error.response?.data?.message || error.message);
         }
-        // setIsLoading(false); // Removed
+        
     };
 
     const deleteItem = async (id) => {
-        // Optimistic update: Remove item from UI immediately
+        
         const previousItems = [...items];
         setItems((prevItems) => prevItems.filter((item) => item._id !== id));
 
@@ -55,7 +55,7 @@ export const ItemProvider = ({ children }) => {
             const token = user.token;
             await itemService.deleteItem(id, token);
         } catch (error) {
-            // Revert on error
+            
             setItems(previousItems);
             setIsError(true);
             setMessage(error.response?.data?.message || error.message);
