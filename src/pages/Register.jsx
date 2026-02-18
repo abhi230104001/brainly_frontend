@@ -69,7 +69,7 @@ function Register() {
         <div className="min-h-screen bg-gray-100 flex justify-center items-center p-4 font-sans">
             <div className="bg-white rounded-2xl w-full max-w-[400px] overflow-hidden">
 
-                {/* Header Tabs */}
+                {}
                 <div className="flex">
                     <div className="flex-1 py-4 text-center cursor-pointer relative">
                         <span className="text-gray-800 font-bold text-lg">Sign Up</span>
@@ -78,10 +78,10 @@ function Register() {
 
                 </div>
 
-                {/* Form Container */}
+                {}
                 <div className="p-8">
                     <form onSubmit={onSubmit} className="space-y-5">
-                        {/* Name Field */}
+                        {}
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaUser className="text-gray-400 text-sm" />
@@ -97,7 +97,7 @@ function Register() {
                             />
                         </div>
 
-                        {/* Email Field */}
+                        {}
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaEnvelope className="text-gray-400 text-sm" />
@@ -113,7 +113,7 @@ function Register() {
                             />
                         </div>
 
-                        {/* Password Field */}
+                        {}
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaLock className="text-gray-400 text-sm" />
@@ -136,7 +136,7 @@ function Register() {
                             </button>
                         </div>
 
-                        {/* Confirm Password Field */}
+                        {}
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <FaLock className="text-gray-400 text-sm" />
@@ -159,7 +159,7 @@ function Register() {
                             </button>
                         </div>
 
-                        {/* Submit Button */}
+                        {}
                         <div className="pt-2">
                             <button
                                 type="submit"
