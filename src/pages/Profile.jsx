@@ -17,7 +17,7 @@ import {
 
 function Profile() {
     const navigate = useNavigate();
-    const { user, logout } = useContext(AuthContext); // logout available but not shown in dropdown
+    const { user, logout } = useContext(AuthContext); 
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ function Profile() {
         }
     }, [user, navigate]);
 
-    // Component: Sidebar Item
+    
     const SidebarItem = ({ icon: Icon, label, onClick, isActive }) => (
         <button
             onClick={onClick}
@@ -43,7 +43,7 @@ function Profile() {
 
     return (
         <div className="flex h-screen bg-white font-sans overflow-hidden">
-            {/* Sidebar */}
+            {}
             <aside className="w-64 bg-white hidden md:flex flex-col p-6 z-10 space-y-2 border-r border-gray-100">
                 <div className="flex items-center gap-3 mb-10 px-2 cursor-pointer" onClick={() => navigate('/dashboard')}>
                     <div className="w-8 h-8 bg-[#4318FF] rounded-lg flex items-center justify-center">
@@ -66,9 +66,9 @@ function Profile() {
                 </div>
             </aside>
 
-            {/* Main Content */}
+            {}
             <div className="flex-1 flex flex-col min-h-0 relative">
-                {/* Header */}
+                {}
                 <header className="h-20 bg-white px-8 flex items-center justify-end shrink-0 border-b border-gray-50">
 
 
@@ -94,14 +94,14 @@ function Profile() {
                                         <p className="text-xs text-[#A3AED0] truncate">{user?.email}</p>
                                     </div>
                                     <div className="p-2">
-                                        {/* My Profile Link (redundant but kept for consistency, or disabled/different) */}
+                                        {}
                                         <button
                                             onClick={() => setIsProfileDropdownOpen(false)}
                                             className="w-full text-left px-4 py-2.5 text-sm font-medium text-[#4318FF] bg-blue-50 rounded-xl transition-colors flex items-center gap-2"
                                         >
                                             <FaCog size={14} /> My Profile
                                         </button>
-                                        {/* Logout Option REMOVED per user request */}
+                                        {}
                                     </div>
                                 </div>
                             )}
@@ -109,13 +109,13 @@ function Profile() {
                     </div>
                 </header >
 
-                {/* Profile Content */}
+                {}
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50/50 p-8">
                     <div className="max-w-4xl mx-auto">
                         <h1 className="text-2xl font-bold text-[#2B3674] mb-8">My Profile</h1>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {/* Profile Card */}
+                            {}
                             <div className="md:col-span-1">
                                 <div className="bg-white p-8 rounded-[20px] shadow-lg shadow-gray-100 border border-gray-100 flex flex-col items-center text-center relative overflow-hidden">
                                     <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-r from-[#4318FF] to-[#868CFF] opacity-10"></div>
@@ -127,7 +127,7 @@ function Profile() {
                                 </div>
                             </div>
 
-                            {/* Details Card */}
+                            {}
                             <div className="md:col-span-2">
                                 <div className="bg-white p-8 rounded-[20px] shadow-lg shadow-gray-100 border border-gray-100">
                                     <div className="flex justify-between items-center mb-6">
@@ -160,9 +160,7 @@ function Profile() {
                                         </div>
                                     </div>
 
-                                    {/* Action Buttons for Profile - since Logout is hidden in dropdown, maybe show it here? 
-                                        User said "logout option should not show on profile page". So I will NOT show it here either.
-                                    */}
+                                    {}
                                 </div>
                             </div>
                         </div>

@@ -35,11 +35,11 @@ function Dashboard() {
     const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
 
-    // Quick Note State
+
     const [quickNoteTitle, setQuickNoteTitle] = useState('');
     const [quickNoteContent, setQuickNoteContent] = useState('');
 
-    // Add Item Form State
+
     const [formData, setFormData] = useState({
         title: '',
         description: '',
@@ -58,23 +58,23 @@ function Dashboard() {
         }
     }, [user, navigate, isError, message]);
 
-    // Derived Data
+
     const notesCount = items.filter(i => i.type === 'NOTE').length;
     const bookmarksCount = items.filter(i => i.type === 'LINK').length;
     const documentsCount = items.filter(i => i.type === 'DOCUMENT').length;
     const imagesCount = items.filter(i => i.type === 'IMAGE').length;
 
-    // Filtered Items
+
     const getFilteredItems = () => {
         let filtered = items;
 
-        // Filter by Tab
+
         if (activeTab === 'notes') filtered = filtered.filter(i => i.type === 'NOTE');
         if (activeTab === 'bookmarks') filtered = filtered.filter(i => i.type === 'LINK');
         if (activeTab === 'documents') filtered = filtered.filter(i => i.type === 'DOCUMENT');
         if (activeTab === 'images') filtered = filtered.filter(i => i.type === 'IMAGE');
 
-        // Filter by Search
+
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
             filtered = filtered.filter(i =>
@@ -88,7 +88,7 @@ function Dashboard() {
 
     const filteredItems = getFilteredItems();
 
-    // Handlers
+
     const handleItemClick = (item) => {
         if (item.type === 'LINK') {
             window.open(item.url, '_blank');
@@ -138,7 +138,7 @@ function Dashboard() {
         setIsAddModalOpen(false);
     };
 
-    // Component: Sidebar Item
+
     const SidebarItem = ({ id, icon: Icon, label, onClick }) => (
         <button
             onClick={() => setActiveTab(id)}
@@ -153,7 +153,7 @@ function Dashboard() {
         </button>
     );
 
-    // Component: Overview Card
+
     const OverviewCard = ({ icon: Icon, label, count, colorClass, bgClass, onClick }) => (
         <div
             onClick={onClick}
@@ -179,7 +179,7 @@ function Dashboard() {
 
     return (
         <div className="flex h-screen bg-white font-sans overflow-hidden transition-colors duration-300">
-            {/* Sidebar */}
+            { }
             <aside className="w-64 bg-white hidden md:flex flex-col p-6 z-10 space-y-2 border-r border-gray-100 transition-colors duration-300">
                 <div className="flex items-center gap-3 mb-10 px-2">
                     <div className="w-8 h-8 bg-[#4318FF] rounded-lg flex items-center justify-center">
@@ -199,9 +199,9 @@ function Dashboard() {
                 </div>
             </aside>
 
-            {/* Main Content */}
+            { }
             <div className="flex-1 flex flex-col min-h-0 relative">
-                {/* Header */}
+                { }
                 <header className="h-20 bg-white px-8 flex items-center justify-between shrink-0 transition-colors duration-300">
                     <div></div>
 
@@ -246,12 +246,12 @@ function Dashboard() {
                     </div>
                 </header >
 
-                {/* Dashboard Content */}
+                { }
                 <main className="flex-1 overflow-x-hidden overflow-y-auto bg-white p-8 transition-colors duration-300">
                     <div className="flex flex-col xl:flex-row gap-8">
-                        {/* Center Column */}
+                        { }
                         <div className="flex-1 min-w-0">
-                            {/* Welcome Section */}
+                            { }
                             <div className="flex justify-between items-end mb-8">
                                 <div>
                                     <h1 className="text-2xl font-bold text-[#2B3674]">Quick Access</h1>
@@ -264,7 +264,7 @@ function Dashboard() {
                                 </button>
                             </div>
 
-                            {/* Overview Cards Scrollable Row */}
+                            { }
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
                                 <OverviewCard
                                     icon={FaStickyNote}
@@ -300,7 +300,7 @@ function Dashboard() {
                                 />
                             </div>
 
-                            {/* Recent Notes Section */}
+                            { }
                             {activeTab === 'notes' && (
                                 <div className="mb-8">
                                     <div className="flex justify-between items-center mb-6">
@@ -352,7 +352,7 @@ function Dashboard() {
                                 </div>
                             )}
 
-                            {/* Main List Section */}
+                            { }
                             <div className="bg-white rounded-[20px] shadow-sm border border-gray-100 overflow-hidden transition-colors duration-300">
                                 <div className="p-6 flex justify-between items-center border-b border-gray-100">
                                     <h2 className="text-xl font-bold text-[#2B3674] flex items-center gap-2">
@@ -389,6 +389,9 @@ function Dashboard() {
                                                     </div>
                                                     <div className="min-w-0">
                                                         <h3 className="font-bold text-[#2B3674] text-sm truncate">{item.title}</h3>
+                                                        {item.type === 'LINK' && item.url && (
+                                                            <p className="text-xs text-blue-500 truncate mt-0.5">{item.url}</p>
+                                                        )}
                                                     </div>
                                                 </div>
 
@@ -430,7 +433,7 @@ function Dashboard() {
                 </main>
             </div>
 
-            {/* View Media Modal */}
+            { }
             {selectedItem && (
                 <div className="fixed inset-0 bg-blue-900/20 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setSelectedItem(null)}>
                     <div className="bg-white rounded-[20px] w-full max-w-4xl max-h-[90vh] shadow-2xl overflow-hidden relative flex flex-col" onClick={e => e.stopPropagation()}>
@@ -468,7 +471,7 @@ function Dashboard() {
             )
             }
 
-            {/* Add Item Modal */}
+            { }
             {
                 isAddModalOpen && (
                     <div className="fixed inset-0 bg-blue-900/20 backdrop-blur-sm z-50 flex items-center justify-center p-4">
@@ -530,7 +533,7 @@ function Dashboard() {
                                                 placeholder="https://..."
                                                 value={formData.url}
                                                 onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                                                className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all font-medium placeholder:text-[#A3AED0]"
+                                                className="w-full bg-white border border-[#E0E5F2] rounded-xl px-4 py-3 focus:ring-2 focus:ring-[#4318FF] outline-none transition-all font-medium placeholder:text-[#A3AED0] text-black"
                                             />
                                         </div>
                                     )}
