@@ -21,20 +21,9 @@ const LandingPage = () => {
 
                     {}
                     <div className="flex items-center gap-6 font-bold text-sm tracking-wide ml-auto">
-                        {user ? (
-                            <Link to="/dashboard" className="text-gray-900 hover:text-indigo-600 uppercase">
-                                Dashboard
-                            </Link>
-                        ) : (
-                            <>
-                                <Link to="/login" className="text-gray-900 hover:text-indigo-600 uppercase">
-                                    Log In
-                                </Link>
-                                <Link to="/register" className="text-black hover:text-indigo-600 uppercase">
-                                    Sign Up
-                                </Link>
-                            </>
-                        )}
+                        <Link to={user ? "/dashboard" : "/login"} className="text-gray-900 hover:text-indigo-600 uppercase">
+                            Dashboard
+                        </Link>
                     </div>
                 </div>
             </nav>
@@ -64,7 +53,7 @@ const LandingPage = () => {
 
                 {}
                 <div className="mt-16">
-                    <Link to={user ? "/dashboard" : "/register"} className="inline-block px-10 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-800 transition-all">
+                    <Link to={user ? "/dashboard" : "/login"} className="inline-block px-10 py-4 rounded-full bg-black text-white font-bold text-lg hover:bg-gray-800 transition-all">
                         Start Organizing Now
                     </Link>
                 </div>
