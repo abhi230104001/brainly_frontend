@@ -16,7 +16,7 @@ const LandingPage = () => {
   to="/" 
   className="text-3xl font-black text-gray-900 tracking-tighter uppercase"
 >
-  SECONDBRAIN12
+  SECONDBRAIN
 </Link>
 
                     {}
