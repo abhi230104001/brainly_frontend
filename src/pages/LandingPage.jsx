@@ -12,9 +12,12 @@ const LandingPage = () => {
             <nav className="border-b border-transparent py-6">
                 <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-4">
                     {}
-                    <Link to="/" className="text-3xl font-black text-gray-900 tracking-tighter uppercase transform -rotate-2">
-                        SECONDBRAIN
-                    </Link>
+                   <Link 
+  to="/" 
+  className="text-3xl font-black text-gray-900 tracking-tighter uppercase"
+>
+  SECONDBRAIN12
+</Link>
 
                     {}
                     <div className="flex items-center gap-6 font-bold text-sm tracking-wide ml-auto">
